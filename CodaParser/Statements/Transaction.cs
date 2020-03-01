@@ -12,15 +12,19 @@ namespace CodaParser.Statements
         /// Initializes a new instance of the <see cref="Transaction"/> class.
         /// </summary>
         /// <param name="account">The account of the other party.</param>
+        /// <param name="statementSequence">The sequence id of the statement.</param>
+        /// <param name="transactionSequence">The sequence id of the transaction.</param>
         /// <param name="transactionDate">The date where the transaction is executed.</param>
         /// <param name="valutaDate">The date where the valuta is changed.</param>
         /// <param name="amount">The amount that has been transfered.</param>
         /// <param name="message">A message that is included in the transaction.</param>
         /// <param name="structuredMessage">A structured message.</param>
         /// <param name="sepaDirectDebit">The sepa direct debit information.</param>
-        public Transaction(AccountOtherParty account, DateTime transactionDate, DateTime valutaDate, decimal amount, string message, string structuredMessage, SepaDirectDebit sepaDirectDebit)
+        public Transaction(AccountOtherParty account, int statementSequence, int transactionSequence, DateTime transactionDate, DateTime valutaDate, decimal amount, string message, string structuredMessage, SepaDirectDebit sepaDirectDebit)
         {
             Account = account;
+            StatementSequence = statementSequence;
+            TransactionSequence = transactionSequence;
             TransactionDate = transactionDate;
             ValutaDate = valutaDate;
             Amount = amount;
@@ -35,7 +39,7 @@ namespace CodaParser.Statements
         public AccountOtherParty Account { get; }
 
         /// <summary>
-        /// Gets the transfered amount.
+        /// Gets the transferred amount.
         /// </summary>
         public decimal Amount { get; }
 
@@ -50,6 +54,11 @@ namespace CodaParser.Statements
         public SepaDirectDebit SepaDirectDebit { get; }
 
         /// <summary>
+        /// Gets the sequence id of the statement.
+        /// </summary>
+        public int StatementSequence { get; }
+
+        /// <summary>
         /// Gets the structured message.
         /// </summary>
         public string StructuredMessage { get; }
@@ -58,6 +67,11 @@ namespace CodaParser.Statements
         /// Gets the date where the transaction is executed.
         /// </summary>
         public DateTime TransactionDate { get; }
+
+        /// <summary>
+        /// Gets the sequence id of the transaction.
+        /// </summary>
+        public int TransactionSequence { get; }
 
         /// <summary>
         /// Gets the date when the valuta is changed.

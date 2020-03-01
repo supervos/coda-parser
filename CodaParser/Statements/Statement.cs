@@ -56,6 +56,6 @@ namespace CodaParser.Statements
         /// <summary>
         /// Gets the executed transactions.
         /// </summary>
-        public IEnumerable<Transaction> Transactions { get; }
+        public IReadOnlyList<Transaction> Transactions { get; }
     }
 }

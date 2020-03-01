@@ -80,6 +80,15 @@ namespace CodaParserTests
                 Assert.AreNotEqual(default(DateTime), transaction.ValutaDate);
                 Assert.IsNotEmpty(transaction.Message);
             }
+
+            Assert.AreEqual(1, statement.Transactions[0].TransactionSequence);
+            Assert.AreEqual(214, statement.Transactions[0].StatementSequence);
+
+            Assert.AreEqual(2, statement.Transactions[1].TransactionSequence);
+            Assert.AreEqual(214, statement.Transactions[1].StatementSequence);
+
+            Assert.AreEqual(9, statement.Transactions[2].TransactionSequence);
+            Assert.AreEqual(214, statement.Transactions[2].StatementSequence);
         }
 
         [Test]
@@ -104,9 +113,9 @@ namespace CodaParserTests
             Assert.AreEqual("EUR", statement.Account.CurrencyCode);
             Assert.AreEqual("BE", statement.Account.CountryCode);
 
-            var transaction1 = statement.Transactions.ElementAt(0);
-            var transaction2 = statement.Transactions.ElementAt(1);
-            var transaction3 = statement.Transactions.ElementAt(2);
+            var transaction1 = statement.Transactions[0];
+            var transaction2 = statement.Transactions[1];
+            var transaction3 = statement.Transactions[2];
             Assert.IsNotNull(transaction1.Account);
             Assert.AreEqual(new DateTime(2014, 12, 25), transaction1.TransactionDate);
             Assert.AreEqual(new DateTime(2014, 12, 25), transaction1.ValutaDate);
@@ -118,12 +127,18 @@ namespace CodaParserTests
             Assert.AreEqual("GEBCEEBB", transaction1.Account.Bic);
             Assert.AreEqual("BE54805480215856", transaction1.Account.Number);
             Assert.AreEqual("EUR", transaction1.Account.CurrencyCode);
+            Assert.AreEqual(1, transaction1.TransactionSequence);
+            Assert.AreEqual(214, transaction1.StatementSequence);
 
             Assert.AreEqual("54875", transaction2.Message);
             Assert.AreEqual("112455446812", transaction2.StructuredMessage);
+            Assert.AreEqual(2, transaction2.TransactionSequence);
+            Assert.AreEqual(214, transaction2.StatementSequence);
 
             Assert.IsEmpty(transaction3.Account.Name);
             Assert.AreEqual("GEBCEEBB", transaction3.Account.Bic);
+            Assert.AreEqual(9, transaction3.TransactionSequence);
+            Assert.AreEqual(214, transaction3.StatementSequence);
         }
 
         private string GetSamplePath(string sampleFile)
