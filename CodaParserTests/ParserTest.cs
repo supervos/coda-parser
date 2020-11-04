@@ -79,6 +79,7 @@ namespace CodaParserTests
                 Assert.AreNotEqual(default(DateTime), transaction.TransactionDate);
                 Assert.AreNotEqual(default(DateTime), transaction.ValutaDate);
                 Assert.IsNotEmpty(transaction.Message);
+                Assert.AreEqual("54875", transaction.ClientReference);
             }
 
             Assert.AreEqual(1, statement.Transactions[0].TransactionSequence);
