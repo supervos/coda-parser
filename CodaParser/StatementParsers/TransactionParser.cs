@@ -66,6 +66,12 @@ namespace CodaParser.StatementParsers
 
             var message = ConstructMessage(lines);
 
+            // Extract client reference when available
+            string clientReference = null;
+            var transactionPart2Line = Helpers.GetFirstLineOfType<TransactionPart2Line>(lines);
+            if (transactionPart2Line != null && transactionPart2Line.ClientReference != null)
+                clientReference = transactionPart2Line.ClientReference.Value;
+
             return new Transaction(
                 account,
                 statementSequence,
@@ -75,6 +81,7 @@ namespace CodaParser.StatementParsers
                 amount,
                 message,
                 structuredMessage,
+                clientReference,
                 sepaDirectDebit);
         }
 
