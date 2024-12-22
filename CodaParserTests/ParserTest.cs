@@ -79,6 +79,7 @@ public class ParserTest
             Assert.That(transaction.TransactionDate, Is.Not.EqualTo(default(DateTime)));
             Assert.That(transaction.ValutaDate, Is.Not.EqualTo(default(DateTime)));
             Assert.That(transaction.Message, Is.Not.Empty);
+            Assert.That(transaction.ClientReference, Is.EqualTo("54875"));
         }
 
         Assert.That(statement.Transactions[0].TransactionSequence, Is.EqualTo(1));
