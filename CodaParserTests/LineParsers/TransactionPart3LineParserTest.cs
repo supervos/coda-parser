@@ -2,6 +2,8 @@ using CodaParser.LineParsers;
 using CodaParser.Lines;
 using NUnit.Framework;
 
+namespace CodaParserTests.LineParsers;
+
 [TestFixture]
 public class TransactionPart3LineParserTest
 {
@@ -12,14 +14,14 @@ public class TransactionPart3LineParserTest
 
         var sample = "2300010000BE54805480215856                  EURBVBA.BAKKER PIET                         MESSAGE                              0 1";
 
-        Assert.IsTrue(parser.CanAcceptString(sample));
+        Assert.That(parser.CanAcceptString(sample), Is.True);
 
         var result = (TransactionPart3Line)parser.Parse(sample);
 
-        Assert.AreEqual(1, result.SequenceNumber.Value);
-        Assert.AreEqual(0, result.SequenceNumberDetail.Value);
-        Assert.AreEqual("BE54805480215856                  EUR", result.OtherAccountNumberAndCurrency.Value);
-        Assert.AreEqual("BVBA.BAKKER PIET", result.OtherAccountName.Value);
-        Assert.AreEqual(" MESSAGE ", result.Message.Value);
+        Assert.That(result.SequenceNumber.Value, Is.EqualTo(1));
+        Assert.That(result.SequenceNumberDetail.Value, Is.EqualTo(0));
+        Assert.That(result.OtherAccountNumberAndCurrency.Value, Is.EqualTo("BE54805480215856                  EUR"));
+        Assert.That(result.OtherAccountName.Value, Is.EqualTo("BVBA.BAKKER PIET"));
+        Assert.That(result.Message.Value, Is.EqualTo(" MESSAGE "));
     }
 }

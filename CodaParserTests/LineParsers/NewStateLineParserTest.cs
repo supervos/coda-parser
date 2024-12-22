@@ -3,6 +3,8 @@ using CodaParser.LineParsers;
 using CodaParser.Lines;
 using NUnit.Framework;
 
+namespace CodaParserTests.LineParsers;
+
 [TestFixture]
 public class NewStateLineParserTest
 {
@@ -13,13 +15,13 @@ public class NewStateLineParserTest
 
         var sample = "8225001548226815 EUR0BE                  1000000500012100120515                                                                0";
 
-        Assert.IsTrue(parser.CanAcceptString(sample));
+        Assert.That(parser.CanAcceptString(sample), Is.True);
 
         var result = (NewStateLine)parser.Parse(sample);
 
-        Assert.AreEqual(225, result.StatementSequenceNumber.Value);
-        Assert.AreEqual("001548226815 EUR0BE", result.Account.Value);
-        Assert.AreEqual(-500012.100, result.Balance.Value);
-        Assert.AreEqual(new DateTime(2015, 5, 12), result.Date.Value);
+        Assert.That(result.StatementSequenceNumber.Value, Is.EqualTo(225));
+        Assert.That(result.Account.Value, Is.EqualTo("001548226815 EUR0BE"));
+        Assert.That(result.Balance.Value, Is.EqualTo(-500012.100));
+        Assert.That(result.Date.Value, Is.EqualTo(new DateTime(2015, 5, 12)));
     }
 }

@@ -2,6 +2,8 @@ using CodaParser.LineParsers;
 using CodaParser.Lines;
 using NUnit.Framework;
 
+namespace CodaParserTests.LineParsers;
+
 [TestFixture]
 public class TransactionPart2LineParserTest
 {
@@ -12,16 +14,16 @@ public class TransactionPart2LineParserTest
 
         var sample = "2200010000  ANOTHER MESSAGE                                           54875                       GEBCEEBB                   1 0";
 
-        Assert.IsTrue(parser.CanAcceptString(sample));
+        Assert.That(parser.CanAcceptString(sample), Is.True);
 
         var result = (TransactionPart2Line)parser.Parse(sample);
 
-        Assert.AreEqual(1, result.SequenceNumber.Value);
-        Assert.AreEqual(0, result.SequenceNumberDetail.Value);
-        Assert.AreEqual(" ANOTHER MESSAGE ", result.Message.Value);
-        Assert.AreEqual("54875", result.ClientReference.Value);
-        Assert.AreEqual("GEBCEEBB", result.OtherAccountBic.Value);
-        Assert.AreEqual("", result.CategoryPurpose.Value);
-        Assert.AreEqual("", result.Purpose.Value);
+        Assert.That(result.SequenceNumber.Value, Is.EqualTo(1));
+        Assert.That(result.SequenceNumberDetail.Value, Is.EqualTo(0));
+        Assert.That(result.Message.Value, Is.EqualTo(" ANOTHER MESSAGE "));
+        Assert.That(result.ClientReference.Value, Is.EqualTo("54875"));
+        Assert.That(result.OtherAccountBic.Value, Is.EqualTo("GEBCEEBB"));
+        Assert.That(result.CategoryPurpose.Value, Is.EqualTo(""));
+        Assert.That(result.Purpose.Value, Is.EqualTo(""));
     }
 }

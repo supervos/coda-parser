@@ -3,8 +3,10 @@ using CodaParser.LineParsers;
 using CodaParser.Lines;
 using NUnit.Framework;
 
+namespace CodaParserTests.LineParsers;
+
 [TestFixture]
-internal class TransactionPart1LineParserTest
+public class TransactionPart1LineParserTest
 {
     [Test]
     public void TestSample1()
@@ -13,23 +15,23 @@ internal class TransactionPart1LineParserTest
 
         var sample = "21000100000001200002835        0000000001767820251214001120000112/4554/46812   813                                 25121421401 0";
 
-        Assert.IsTrue(parser.CanAcceptString(sample));
+        Assert.That(parser.CanAcceptString(sample), Is.True);
 
         var result = (TransactionPart1Line)parser.Parse(sample);
-        Assert.AreEqual(1, result.SequenceNumber.Value);
-        Assert.AreEqual(0, result.SequenceNumberDetail.Value);
-        Assert.AreEqual("0001200002835", result.BankReference.Value);
-        Assert.AreEqual(1767.820, result.Amount.Value);
-        Assert.AreEqual(new DateTime(2014, 12, 25), result.ValutaDate.Value);
-        Assert.AreEqual("0", result.TransactionCode.Type.Value);
-        Assert.AreEqual("01", result.TransactionCode.Family.Value);
-        Assert.AreEqual("12", result.TransactionCode.Operation.Value);
-        Assert.AreEqual("000", result.TransactionCode.Category.Value);
-        Assert.AreEqual("112/4554/46812   813 ", result.MessageOrStructuredMessage.Message.Value);
-        Assert.IsNull(result.MessageOrStructuredMessage.StructuredMessage);
-        Assert.AreEqual(new DateTime(2014, 12, 25), result.TransactionDate.Value);
-        Assert.AreEqual(214, result.StatementSequenceNumber.Value);
-        Assert.AreEqual(0, result.GlobalizationCode.Value);
+        Assert.That(result.SequenceNumber.Value, Is.EqualTo(1));
+        Assert.That(result.SequenceNumberDetail.Value, Is.EqualTo(0));
+        Assert.That(result.BankReference.Value, Is.EqualTo("0001200002835"));
+        Assert.That(result.Amount.Value, Is.EqualTo(1767.820));
+        Assert.That(result.ValutaDate.Value, Is.EqualTo(new DateTime(2014, 12, 25)));
+        Assert.That(result.TransactionCode.Type.Value, Is.EqualTo("0"));
+        Assert.That(result.TransactionCode.Family.Value, Is.EqualTo("01"));
+        Assert.That(result.TransactionCode.Operation.Value, Is.EqualTo("12"));
+        Assert.That(result.TransactionCode.Category.Value, Is.EqualTo("000"));
+        Assert.That(result.MessageOrStructuredMessage.Message.Value, Is.EqualTo("112/4554/46812   813 "));
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage, Is.Null);
+        Assert.That(result.TransactionDate.Value, Is.EqualTo(new DateTime(2014, 12, 25)));
+        Assert.That(result.StatementSequenceNumber.Value, Is.EqualTo(214));
+        Assert.That(result.GlobalizationCode.Value, Is.EqualTo(0));
     }
 
     [Test]
@@ -39,26 +41,26 @@ internal class TransactionPart1LineParserTest
 
         var sample = "21000100000001200002835        0000000002767820251214001120001101112455446812  813                                 25121421401 0";
 
-        Assert.IsTrue(parser.CanAcceptString(sample));
+        Assert.That(parser.CanAcceptString(sample), Is.True);
 
         var result = (TransactionPart1Line)parser.Parse(sample);
-        Assert.AreEqual(1, result.SequenceNumber.Value);
-        Assert.AreEqual(0, result.SequenceNumberDetail.Value);
-        Assert.AreEqual("0001200002835", result.BankReference.Value);
-        Assert.AreEqual(2767.820, result.Amount.Value);
-        Assert.AreEqual(new DateTime(2014, 12, 25), result.ValutaDate.Value);
-        Assert.AreEqual("0", result.TransactionCode.Type.Value);
-        Assert.AreEqual("01", result.TransactionCode.Family.Value);
-        Assert.AreEqual("12", result.TransactionCode.Operation.Value);
-        Assert.AreEqual("000", result.TransactionCode.Category.Value);
-        Assert.IsNull(result.MessageOrStructuredMessage.Message);
-        Assert.IsNotNull(result.MessageOrStructuredMessage.StructuredMessage);
-        Assert.AreEqual("101", result.MessageOrStructuredMessage.StructuredMessage.StructuredMessageType);
-        Assert.AreEqual("112455446812  813                                 ", result.MessageOrStructuredMessage.StructuredMessage.StructuredMessageFull);
-        Assert.AreEqual("112455446812", result.MessageOrStructuredMessage.StructuredMessage.Value);
-        Assert.AreEqual(new DateTime(2014, 12, 25), result.TransactionDate.Value);
-        Assert.AreEqual(214, result.StatementSequenceNumber.Value);
-        Assert.AreEqual(0, result.GlobalizationCode.Value);
+        Assert.That(result.SequenceNumber.Value, Is.EqualTo(1));
+        Assert.That(result.SequenceNumberDetail.Value, Is.EqualTo(0));
+        Assert.That(result.BankReference.Value, Is.EqualTo("0001200002835"));
+        Assert.That(result.Amount.Value, Is.EqualTo(2767.820));
+        Assert.That(result.ValutaDate.Value, Is.EqualTo(new DateTime(2014, 12, 25)));
+        Assert.That(result.TransactionCode.Type.Value, Is.EqualTo("0"));
+        Assert.That(result.TransactionCode.Family.Value, Is.EqualTo("01"));
+        Assert.That(result.TransactionCode.Operation.Value, Is.EqualTo("12"));
+        Assert.That(result.TransactionCode.Category.Value, Is.EqualTo("000"));
+        Assert.That(result.MessageOrStructuredMessage.Message, Is.Null);
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage, Is.Not.Null);
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage.StructuredMessageType, Is.EqualTo("101"));
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage.StructuredMessageFull, Is.EqualTo("112455446812  813                                 "));
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage.Value, Is.EqualTo("112455446812"));
+        Assert.That(result.TransactionDate.Value, Is.EqualTo(new DateTime(2014, 12, 25)));
+        Assert.That(result.StatementSequenceNumber.Value, Is.EqualTo(214));
+        Assert.That(result.GlobalizationCode.Value, Is.EqualTo(0));
     }
 
     [Test]
@@ -68,34 +70,34 @@ internal class TransactionPart1LineParserTest
 
         var sample = "2100280000VAAS00026BSDDXXXXXXXX1000000000050000050815005030001127050815112BEA123XXXXXXXXXXX                  M123  25121421401 0";
 
-        Assert.IsTrue(parser.CanAcceptString(sample));
+        Assert.That(parser.CanAcceptString(sample), Is.True);
 
         var result = (TransactionPart1Line)parser.Parse(sample);
-        Assert.AreEqual(28, result.SequenceNumber.Value);
-        Assert.AreEqual(0, result.SequenceNumberDetail.Value);
-        Assert.AreEqual("VAAS00026BSDDXXXXXXXX", result.BankReference.Value);
-        Assert.AreEqual(-50, result.Amount.Value);
-        Assert.AreEqual(new DateTime(2015, 08, 05), result.ValutaDate.Value);
-        Assert.AreEqual("0", result.TransactionCode.Type.Value);
-        Assert.AreEqual("05", result.TransactionCode.Family.Value);
-        Assert.AreEqual("03", result.TransactionCode.Operation.Value);
-        Assert.AreEqual("000", result.TransactionCode.Category.Value);
-        Assert.IsNull(result.MessageOrStructuredMessage.Message);
-        Assert.IsNotNull(result.MessageOrStructuredMessage.StructuredMessage);
-        Assert.AreEqual("127", result.MessageOrStructuredMessage.StructuredMessage.StructuredMessageType);
-        Assert.AreEqual("050815112BEA123XXXXXXXXXXX                  M123  ", result.MessageOrStructuredMessage.StructuredMessage.StructuredMessageFull);
-        Assert.IsEmpty(result.MessageOrStructuredMessage.StructuredMessage.Value);
-        Assert.AreEqual(new DateTime(2014, 12, 25), result.TransactionDate.Value);
-        Assert.AreEqual(214, result.StatementSequenceNumber.Value);
-        Assert.AreEqual(0, result.GlobalizationCode.Value);
+        Assert.That(result.SequenceNumber.Value, Is.EqualTo(28));
+        Assert.That(result.SequenceNumberDetail.Value, Is.EqualTo(0));
+        Assert.That(result.BankReference.Value, Is.EqualTo("VAAS00026BSDDXXXXXXXX"));
+        Assert.That(result.Amount.Value, Is.EqualTo(-50));
+        Assert.That(result.ValutaDate.Value, Is.EqualTo(new DateTime(2015, 08, 05)));
+        Assert.That(result.TransactionCode.Type.Value, Is.EqualTo("0"));
+        Assert.That(result.TransactionCode.Family.Value, Is.EqualTo("05"));
+        Assert.That(result.TransactionCode.Operation.Value, Is.EqualTo("03"));
+        Assert.That(result.TransactionCode.Category.Value, Is.EqualTo("000"));
+        Assert.That(result.MessageOrStructuredMessage.Message, Is.Null);
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage, Is.Not.Null);
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage.StructuredMessageType, Is.EqualTo("127"));
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage.StructuredMessageFull, Is.EqualTo("050815112BEA123XXXXXXXXXXX                  M123  "));
+        Assert.That(result.MessageOrStructuredMessage.StructuredMessage.Value, Is.Empty);
+        Assert.That(result.TransactionDate.Value, Is.EqualTo(new DateTime(2014, 12, 25)));
+        Assert.That(result.StatementSequenceNumber.Value, Is.EqualTo(214));
+        Assert.That(result.GlobalizationCode.Value, Is.EqualTo(0));
 
         var sepaDirectDebit = result.MessageOrStructuredMessage.StructuredMessage.SepaDirectDebit;
-        Assert.IsNotNull(sepaDirectDebit);
-        Assert.AreEqual(new DateTime(2015, 08, 05), sepaDirectDebit.SettlementDate.Value);
-        Assert.AreEqual(1, sepaDirectDebit.Type);
-        Assert.AreEqual(1, sepaDirectDebit.Scheme);
-        Assert.AreEqual(2, sepaDirectDebit.PaidReason);
-        Assert.AreEqual("BEA123XXXXXXXXXXX", sepaDirectDebit.CreditorIdentificationCode);
-        Assert.AreEqual("M123", sepaDirectDebit.MandateReference);
+        Assert.That(sepaDirectDebit, Is.Not.Null);
+        Assert.That(sepaDirectDebit.SettlementDate.Value, Is.EqualTo(new DateTime(2015, 08, 05)));
+        Assert.That(sepaDirectDebit.Type, Is.EqualTo(1));
+        Assert.That(sepaDirectDebit.Scheme, Is.EqualTo(1));
+        Assert.That(sepaDirectDebit.PaidReason, Is.EqualTo(2));
+        Assert.That(sepaDirectDebit.CreditorIdentificationCode, Is.EqualTo("BEA123XXXXXXXXXXX"));
+        Assert.That(sepaDirectDebit.MandateReference, Is.EqualTo("M123"));
     }
 }
