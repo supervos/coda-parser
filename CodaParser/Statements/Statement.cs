@@ -14,16 +14,20 @@ namespace CodaParser.Statements
         /// </summary>
         /// <param name="date">The execution date.</param>
         /// <param name="account">The changed account.</param>
+        /// <param name="sequenceNumber">The sequence number.</param>
         /// <param name="initialBalance">The initial balance.</param>
         /// <param name="newBalance">The new balance.</param>
+        /// <param name="newDate">The new date of the statement.</param>
         /// <param name="informationalMessage">An informational message.</param>
         /// <param name="transactions">The executed transactions.</param>
-        public Statement(DateTime date, Account account, decimal initialBalance, decimal newBalance, string informationalMessage, IEnumerable<Transaction> transactions)
+        public Statement(DateTime date, Account account, int sequenceNumber, decimal initialBalance, decimal newBalance, DateTime newDate, string informationalMessage, IEnumerable<Transaction> transactions)
         {
             Date = date;
             Account = account;
+            SequenceNumber = sequenceNumber;
             InitialBalance = initialBalance;
             NewBalance = newBalance;
+            NewDate = newDate;
             InformationalMessage = informationalMessage;
             Transactions = Array.AsReadOnly(transactions.ToArray());
         }
@@ -52,6 +56,16 @@ namespace CodaParser.Statements
         /// Gets the new balance.
         /// </summary>
         public decimal NewBalance { get; }
+        
+        /// <summary>
+        /// Gets the new date of this statement.
+        /// </summary>
+        public DateTime NewDate { get; }
+        
+        /// <summary>
+        /// Gets the sequence number.
+        /// </summary>
+        public int SequenceNumber { get; }
 
         /// <summary>
         /// Gets the executed transactions.

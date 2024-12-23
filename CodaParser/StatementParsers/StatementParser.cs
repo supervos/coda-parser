@@ -26,17 +26,21 @@ namespace CodaParser.StatementParsers
             }
 
             var initialBalance = 0.0m;
+            var sequenceNumber = 0;
             var initialStateLine = Helpers.GetFirstLineOfType<InitialStateLine>(lines);
             if (initialStateLine != null)
             {
                 initialBalance = initialStateLine.Balance.Value;
+                sequenceNumber = initialStateLine.StatementSequenceNumber.Value;
             }
 
             var newBalance = 0.0m;
+            var newDate = new DateTime(1, 1, 1);
             var newStateLine = Helpers.GetFirstLineOfType<NewStateLine>(lines);
             if (newStateLine != null)
             {
                 newBalance = newStateLine.Balance.Value;
+                newDate = newStateLine.Date.Value;
             }
 
             var messageParser = new MessageParser();
@@ -62,8 +66,10 @@ namespace CodaParser.StatementParsers
             return new Statement(
                 date,
                 account,
+                sequenceNumber,
                 initialBalance,
                 newBalance,
+                newDate,
                 informationalMessage,
                 transactions
             );
