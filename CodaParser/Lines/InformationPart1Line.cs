@@ -10,11 +10,11 @@ namespace CodaParser.Lines
         /// <summary>
         /// Initializes a new instance of the <see cref="InformationPart1Line"/> class.
         /// </summary>
-        /// <param name="sequenceNumber">The continous sequence number</param>
+        /// <param name="sequenceNumber">The continuous sequence number</param>
         /// <param name="sequenceNumberDetail">The detail number.</param>
         /// <param name="bankReference">The reference number added by the bank.</param>
         /// <param name="transactionCode">The transaction code.</param>
-        /// <param name="messageOrStructuredMessage">The communication in structured or unstructered format.</param>
+        /// <param name="messageOrStructuredMessage">The communication in structured or unstructured format.</param>
         public InformationPart1Line(
             SequenceNumber sequenceNumber,
             SequenceNumberDetail sequenceNumberDetail,
@@ -38,7 +38,7 @@ namespace CodaParser.Lines
         Message IInformationOrTransactionLine.Message => MessageOrStructuredMessage.Message;
 
         /// <summary>
-        /// Gets the communication in structured or unstructered format.
+        /// Gets the communication in structured or unstructured format.
         /// </summary>
         public MessageOrStructuredMessage MessageOrStructuredMessage { get; }
 

@@ -9,7 +9,7 @@ namespace CodaParser
     public interface IParser<out T>
     {
         /// <summary>
-        /// Parse a list of strings to their mathing type.
+        /// Parse a list of strings to their matching type.
         /// </summary>
         /// <param name="codaLines">The strings to parse.</param>
         /// <returns>The parsed result.</returns>

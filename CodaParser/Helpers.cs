@@ -37,7 +37,7 @@ namespace CodaParser
         /// </summary>
         /// <typeparam name="T">The type to filter for.</typeparam>
         /// <param name="lines">The lines to filter.</param>
-        /// <returns>The first line that matches the <typeparamref name="T"/> or <c>null</c></returns>
+        /// <returns>The first line that matches the <typeparamref name="T"/> or <see langword="null" /></returns>
         public static T GetFirstLineOfType<T>(IEnumerable<ILine> lines)
             where T : ILine
         {

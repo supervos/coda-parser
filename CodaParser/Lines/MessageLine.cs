@@ -10,7 +10,7 @@ namespace CodaParser.Lines
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageLine"/> class.
         /// </summary>
-        /// <param name="sequenceNumber">The continous sequence number.</param>
+        /// <param name="sequenceNumber">The continuous sequence number.</param>
         /// <param name="sequenceNumberDetail">The detail number.</param>
         /// <param name="content">The text of the free communication.</param>
         public MessageLine(
@@ -29,7 +29,7 @@ namespace CodaParser.Lines
         public Message Content { get; }
 
         /// <summary>
-        /// Gets the continous sequence number.
+        /// Gets the continuous sequence number.
         /// </summary>
         public SequenceNumber SequenceNumber { get; }
 

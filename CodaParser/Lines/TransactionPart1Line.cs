@@ -10,7 +10,7 @@ namespace CodaParser.Lines
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionPart1Line"/> class.
         /// </summary>
-        /// <param name="sequenceNumber">The continious sequence number.</param>
+        /// <param name="sequenceNumber">The continuous sequence number.</param>
         /// <param name="sequenceNumberDetail">The detail number.</param>
         /// <param name="bankReference">The reference number of the bank.</param>
         /// <param name="amount">The amount.</param>

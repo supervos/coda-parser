@@ -68,7 +68,7 @@ namespace CodaParser.Lines
         /// <summary>Gets the creation date.</summary>
         public Date CreationDate { get; }
 
-        /// <summary>Gets the code "seperate application"</summary>
+        /// <summary>Gets the code "separate application"</summary>
         public ExternalApplicationCode ExternalApplicationCode { get; }
 
         /// <summary>Gets the file reference as determined by the bank or blank</summary>

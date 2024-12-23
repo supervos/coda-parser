@@ -16,11 +16,11 @@ namespace CodaParser.Statements
         /// <param name="transactionSequence">The sequence id of the transaction.</param>
         /// <param name="transactionDate">The date where the transaction is executed.</param>
         /// <param name="valutaDate">The date where the valuta is changed.</param>
-        /// <param name="amount">The amount that has been transfered.</param>
+        /// <param name="amount">The amount that has been transferred.</param>
         /// <param name="message">A message that is included in the transaction.</param>
         /// <param name="structuredMessage">A structured message.</param>
         /// <param name="clientReference">The client reference.</param>
-        /// <param name="sepaDirectDebit">The sepa direct debit information.</param>
+        /// <param name="sepaDirectDebit">The SEPA direct debit information.</param>
         public Transaction(AccountOtherParty account, int statementSequence, int transactionSequence, DateTime transactionDate, DateTime valutaDate, decimal amount, string message, string structuredMessage, string clientReference, SepaDirectDebit sepaDirectDebit)
         {
             Account = account;
@@ -56,7 +56,7 @@ namespace CodaParser.Statements
         public string ClientReference { get; }
 
         /// <summary>
-        /// Gets the sepa direct debit information.
+        /// Gets the SEPA direct debit information.
         /// </summary>
         public SepaDirectDebit SepaDirectDebit { get; }
 

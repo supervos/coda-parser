@@ -1,7 +1,7 @@
 namespace CodaParser.Statements
 {
     /// <summary>
-    /// Information abount an account.
+    /// Information about an account.
     /// </summary>
     public class Account
     {
