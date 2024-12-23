@@ -19,12 +19,13 @@ namespace CodaParser.StatementParsers
             var initialStateLine = Helpers.GetFirstLineOfType<InitialStateLine>(lines);
 
             return new Statements.Account(
-                identificationLine?.AccountName.Value ?? "",
+                initialStateLine?.Account.Name.Value ?? "",
                 identificationLine?.AccountBic.Value ?? "",
                 identificationLine?.AccountCompanyIdentificationNumber.Value ?? "",
                 initialStateLine?.Account.Number.Value ?? "",
                 initialStateLine?.Account.Currency.CurrencyCode ?? "",
-                initialStateLine?.Account.Country.CountryCode ?? "");
+                initialStateLine?.Account.Country.CountryCode ?? "",
+                initialStateLine?.Account.Description.Value ?? "");
         }
     }
 }

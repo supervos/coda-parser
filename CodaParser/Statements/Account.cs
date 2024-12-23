@@ -14,7 +14,8 @@ namespace CodaParser.Statements
         /// <param name="number">The number of the account.</param>
         /// <param name="currencyCode">The currency code.</param>
         /// <param name="countryCode">The country code.</param>
-        public Account(string name, string bic, string companyIdentificationNumber, string number, string currencyCode, string countryCode)
+        /// <param name="description">The description of the account.</param>
+        public Account(string name, string bic, string companyIdentificationNumber, string number, string currencyCode, string countryCode, string description)
         {
             Name = name;
             Bic = bic;
@@ -22,6 +23,7 @@ namespace CodaParser.Statements
             Number = number;
             CurrencyCode = currencyCode;
             CountryCode = countryCode;
+            Description = description;
         }
 
         /// <summary>
@@ -43,6 +45,11 @@ namespace CodaParser.Statements
         /// Gets the currency code.
         /// </summary>
         public string CurrencyCode { get; }
+        
+        /// <summary>
+        /// Gets the description of the account.
+        /// </summary>
+        public string Description { get; }
 
         /// <summary>
         /// Gets the name addressee
