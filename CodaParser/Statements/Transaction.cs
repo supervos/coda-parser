@@ -21,7 +21,19 @@ namespace CodaParser.Statements
         /// <param name="structuredMessage">A structured message.</param>
         /// <param name="clientReference">The client reference.</param>
         /// <param name="sepaDirectDebit">The SEPA direct debit information.</param>
-        public Transaction(AccountOtherParty account, int statementSequence, int transactionSequence, DateTime transactionDate, DateTime valutaDate, decimal amount, string message, string structuredMessage, string clientReference, SepaDirectDebit sepaDirectDebit)
+        /// <param name="transactionCode">The transaction code.</param>
+        public Transaction(
+            AccountOtherParty account,
+            int statementSequence,
+            int transactionSequence, 
+            DateTime transactionDate,
+            DateTime valutaDate, 
+            decimal amount, 
+            string message,
+            string structuredMessage,
+            string clientReference, 
+            SepaDirectDebit sepaDirectDebit,
+            TransactionCode transactionCode)
         {
             Account = account;
             StatementSequence = statementSequence;
@@ -33,6 +45,7 @@ namespace CodaParser.Statements
             StructuredMessage = structuredMessage;
             ClientReference = clientReference;
             SepaDirectDebit = sepaDirectDebit;
+            TransactionCode = transactionCode;
         }
 
         /// <summary>
@@ -69,6 +82,11 @@ namespace CodaParser.Statements
         /// Gets the structured message.
         /// </summary>
         public string StructuredMessage { get; }
+        
+        /// <summary>
+        /// Gets the transaction code.
+        /// </summary>
+        public TransactionCode TransactionCode { get; }
 
         /// <summary>
         /// Gets the date where the transaction is executed.

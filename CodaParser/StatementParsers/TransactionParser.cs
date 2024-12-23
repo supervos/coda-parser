@@ -25,6 +25,7 @@ namespace CodaParser.StatementParsers
             var valutaDate = new DateTime(1, 1, 1);
             var amount = 0.0m;
             SepaDirectDebit sepaDirectDebit = null;
+            Statements.TransactionCode transactionCode = null;
 
             var statementSequence = 0;
             var transactionSequence = 0;
@@ -39,6 +40,13 @@ namespace CodaParser.StatementParsers
                 {
                     sepaDirectDebit = transactionPart1Line.MessageOrStructuredMessage.StructuredMessage.SepaDirectDebit;
                 }
+
+                var valueTransactionCode = transactionPart1Line.TransactionCode;
+                transactionCode = new Statements.TransactionCode(
+                    valueTransactionCode.Family.Value,
+                    valueTransactionCode.Type.Value,
+                    valueTransactionCode.Operation.Value,
+                    valueTransactionCode.Category.Value);
             }
 
             var informationPart1Line = Helpers.GetFirstLineOfType<InformationPart1Line>(lines);
@@ -82,7 +90,8 @@ namespace CodaParser.StatementParsers
                 message,
                 structuredMessage,
                 clientReference,
-                sepaDirectDebit);
+                sepaDirectDebit,
+                transactionCode);
         }
 
         private string ConstructMessage(IEnumerable<ILine> lines)
