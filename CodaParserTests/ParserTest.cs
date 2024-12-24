@@ -113,6 +113,7 @@ public class ParserTest
         Assert.That(statement.Account.Number, Is.EqualTo("001548226815"));
         Assert.That(statement.Account.CurrencyCode, Is.EqualTo("EUR"));
         Assert.That(statement.Account.CountryCode, Is.EqualTo("BE"));
+        Assert.That(statement.Account.Description, Is.EqualTo("PROFESSIONAL ACCOUNT"));
 
         var transaction1 = statement.Transactions[0];
         var transaction2 = statement.Transactions[1];
